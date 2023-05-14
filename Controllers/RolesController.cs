@@ -29,9 +29,20 @@ namespace AppWEB.Controllers
         // GET: Roles
         public async Task<IActionResult> Index()
         {
-            
-            return View("Index","Home");
+            var roles =  _roleManager.Roles.ToList();
+            List<Role> rols = new List<Role>();
+            rols.Add(new Role {
+                Id= roles[0].Id,
+                Name= roles[0].Name,
+                 NormalizedName= roles[0].NormalizedName,
+                ConcurrencyStamp = roles[0].ConcurrencyStamp,  
+            });
+
+
+            return View(rols);
         }
+            
+        
 
         // GET: Roles/Details/5
         public async Task<IActionResult> Details(string id)

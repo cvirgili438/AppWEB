@@ -18,13 +18,14 @@ namespace AppWEB.Controllers
             _logger = logger;
             //this.roleManager = roleManager;
         }
-        [Authorize]
+        
         public IActionResult Index()
         {
-            
+           
+
             return View();
         }
-        [Authorize(Roles ="Admin")]
+        
         public IActionResult Privacy()
         {
             return View();
