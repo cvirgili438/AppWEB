@@ -27,7 +27,7 @@ namespace AppWEB.Controllers
                           View(await _context.Products.ToListAsync()) :
                           Problem("Entity set 'ApplicationDbContext.Products'  is null.");
         }
-        public async Task<IActionResult> Search(string name ) 
+        public  IActionResult Search(string name ) 
         {
             var products = _context.Products.Where(e => e.Name.Contains(name)).ToList();
             if (products.Count > 0 && products is not null)
