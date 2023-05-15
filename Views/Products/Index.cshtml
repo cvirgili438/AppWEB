@@ -13,11 +13,7 @@
     }
    
 </div>
-<div class="text-center">   
-    <a class="btn btn-secondary border-5 rounded-4 mb-sm-2"
-       asp-area="" asp-controller="Roles"
-       asp-action="Index"> UserName</a>
-</div>
+
 
 <div class="text-center" style="display:flex;flex-direction:row;gap:25px; flex-wrap:wrap;">
     @foreach (var obj in Model)
@@ -58,8 +54,12 @@
                 </h6>
             </div>
             <div class="text-center">
-                <a class="btn btn-primary" asp-area="" asp-controller="Product" asp-action="Edit" asp-route-id="@obj.Id">Edit</a>
-                <a class="btn btn-danger" asp-area="" asp-controller="Product" asp-action="Delete" asp-route-id="@obj.Id">Delete</a>
+                @if(User.IsInRole("Admin"))
+                {
+                    <a class="btn btn-primary" asp-area="" asp-controller="Products" asp-action="Edit" asp-route-id="@obj.Id">Edit</a>
+                    <a class="btn btn-danger" asp-area="" asp-controller="Products" asp-action="Delete" asp-route-id="@obj.Id">Delete</a>
+                }
+               
             </div>
 
         </div>

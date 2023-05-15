@@ -72,11 +72,19 @@ namespace AppWEB.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Description,Price,ImageUrl")] Product product)
         {
-            if (ModelState.IsValid)
+            if (product.Id != null
+                && product.Price != null
+                && product.Name != null
+                && product.Description != null)
             {
                 _context.Add(product);
                 await _context.SaveChangesAsync();
+                TempData["success"] = "Product was created succesfully ";
                 return RedirectToAction(nameof(Index));
+            }
+            else 
+            {
+                TempData["Error"] = "Product wasn't create correctly, please try again ";
             }
             return View(product);
         }

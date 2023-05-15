@@ -39,7 +39,7 @@ namespace AppWEB.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Carts");
+                    b.ToTable("Carts", (string)null);
                 });
 
             modelBuilder.Entity("AppWEB.Models.CartItem", b =>
@@ -65,7 +65,7 @@ namespace AppWEB.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("CartItems");
+                    b.ToTable("CartItems", (string)null);
                 });
 
             modelBuilder.Entity("AppWEB.Models.Product", b =>
@@ -101,7 +101,7 @@ namespace AppWEB.Migrations
 
                     b.HasIndex("CartId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

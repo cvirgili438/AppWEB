@@ -12,6 +12,7 @@ namespace AppWEB.Data.Config
             builder.Property(e => e.Name).HasMaxLength(150);
             builder.Property(e=>e.Description).HasMaxLength(555);
             
+            
         }
     }
 }

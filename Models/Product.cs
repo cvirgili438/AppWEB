@@ -9,6 +9,6 @@ namespace AppWEB.Models
         public string Description { get; set; } = null!;
         public decimal Price { get; set; }
         public string ImageUrl { get; set; } = null!;
-        public ICollection<CartItem> CartItems { get; set; } = null!;
+        public ICollection<CartItem> CartItems { get; set; }
     }
 }
