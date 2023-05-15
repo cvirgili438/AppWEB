@@ -4,20 +4,17 @@
     <a asp-action="Create">Create New</a>
 </p>
 
+
+
 @foreach(var obj in Model)
 {
     <div class="dropdown-item" href="#">
         <div class="flex-row">
-            <h5>@obj.Product.Name</h5>
-            <span>@obj.Quantity</span>
-            <span>@obj.Product.Price</span>
+            <h5>Name: @obj.Product.Name</h5>
+            <span> Quantity: @obj.Quantity</span>
+            <span>Price: @obj.Product.Price</span>
         </div>
     </div>
     <a class="dropdown-item" href="#">Another action</a>
     <a class="dropdown-item" href="#">Something else here</a>
 }
-<a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Separated link</a>
