@@ -1,6 +1,5 @@
 ﻿using AppWEB.Data;
 using AppWEB.DTO;
-using AppWEB.ManualMapper;
 using AppWEB.Models;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
@@ -67,7 +66,7 @@ namespace AppWEB.Controllers
 
             }).ToList();
 
-            return PartialView("_Cart",cartItems); ;
+            return PartialView("_Cart",cartItems);
 
         }
         [Authorize]
@@ -115,7 +114,19 @@ namespace AppWEB.Controllers
             await context.SaveChangesAsync();
 
 
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index","Products");
+        }
+        [Authorize]       
+
+        public async Task<IActionResult> Delete(int id ) 
+        {
+            var cart = await context.CartItems.FindAsync(id);
+            if (cart is not null) 
+            {
+                context.CartItems.Remove(cart);
+            }
+            await context.SaveChangesAsync();
+            return RedirectToAction("Index","Products");
         }
     }
 }

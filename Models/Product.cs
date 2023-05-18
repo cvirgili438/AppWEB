@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace AppWEB.Models
 {
@@ -8,7 +9,9 @@ namespace AppWEB.Models
         public string Name { get; set; } = null!;
         public string Description { get; set; } = null!;
         public decimal Price { get; set; }
+        [Required]
+        [Url]
         public string ImageUrl { get; set; } = null!;
-        public ICollection<CartItem> CartItems { get; set; }
+        public ICollection<CartItem>? CartItems { get; set; }
     }
 }

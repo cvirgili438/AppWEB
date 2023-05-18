@@ -39,10 +39,15 @@ namespace AppWEB.Controllers
                           Problem("Entity set 'ApplicationDbContext.Role'  is null.");
         }
 
-        // Get  Admins dewtails
-        public async Task<IActionResult> Details(string role) 
+        // Get  Admins details
+        [Authorize(Roles = "Admin")]
+
+        public async Task<IActionResult> Details(string id) 
         {
-            List<IdentityUser> users = (List<IdentityUser>) await userManager.GetUsersInRoleAsync(role);
+            var roleEntity = await roleManager.FindByIdAsync(id); ;
+            List<IdentityUser> users =
+                (List<IdentityUser>) await userManager.GetUsersInRoleAsync(roleEntity.Name);
+            ViewBag.Name = roleEntity.Name;
             return users != null ? View(users):Problem("No users in this role");
         }
         

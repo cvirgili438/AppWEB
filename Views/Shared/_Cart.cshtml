@@ -12,6 +12,9 @@
                     <p> Quantity: @obj.Quantity</p>
                     <p>Price: @obj.Product.Price</p>               
                 </div>
+                <a class="btn btn-danger" asp-area=""
+                asp-controller="Cart"
+                asp-action="Delete" asp-route-id="@obj.Id">Delete</a>
             </div>
             <div class="dropdown-divider"></div>
             
