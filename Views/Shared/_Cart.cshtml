@@ -1,0 +1,19 @@
+﻿@model IEnumerable<CartItem>
+
+
+
+
+    
+        @foreach(var obj in Model)
+        {
+            <div class="dropdown-item" href="#">
+                <div class="flex-column">
+                    <h5>Name: @obj.Product.Name</h5>
+                    <p> Quantity: @obj.Quantity</p>
+                    <p>Price: @obj.Product.Price</p>               
+                </div>
+            </div>
+            <div class="dropdown-divider"></div>
+            
+        }
+    

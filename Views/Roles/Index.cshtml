@@ -1,4 +1,5 @@
-﻿@model IEnumerable<AppWEB.Models.Role>
+﻿@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<IdentityRole>
 
 @{
     ViewData["Title"] = "Index";
@@ -8,7 +9,6 @@
 
 <p>
     <a asp-action="Create">Create New</a>
-    @ViewBag.succeed
 </p>
 <table class="table">
     <thead>

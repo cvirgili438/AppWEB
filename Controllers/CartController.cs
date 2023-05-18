@@ -11,7 +11,7 @@ using Microsoft.CodeAnalysis;
 
 namespace AppWEB.Controllers
 {
-    public class CartController :Controller
+    public class CartController : Controller
     {
         private readonly ApplicationDbContext context;
         private readonly UserManager<IdentityUser> userManager;
@@ -25,11 +25,11 @@ namespace AppWEB.Controllers
             this.userManager = userManager;
         }
         [Authorize]
-        public async Task<IActionResult> Get() 
+        public async Task<IActionResult> Get()
         {
             var user = await userManager.GetUserAsync(User);
-            var cart = await context.Carts.Include(e=>e.CartItems)
-                .ThenInclude(e=>e.Product)
+            var cart = await context.Carts.Include(e => e.CartItems)
+                .ThenInclude(e => e.Product)
                 .FirstOrDefaultAsync(c => c.UserId == user.Id);
             if (cart == null)
             {
@@ -41,15 +41,34 @@ namespace AppWEB.Controllers
                 ProductId = ci.ProductId,
                 Quantity = ci.Quantity,
                 Product = ci.Product,
-                
-            }).ToList();
-           
-            foreach ( var item in cartItems ) 
-            {
 
-            }
+            }).ToList();
+
             return View(cartItems);
-            
+
+        }
+        [Authorize]
+        public async Task<IActionResult> CartPartialView()
+        {
+            var user = await userManager.GetUserAsync(User);
+            var cart = await context.Carts.Include(e => e.CartItems)
+                .ThenInclude(e => e.Product)
+                .FirstOrDefaultAsync(c => c.UserId == user.Id);
+            if (cart == null)
+            {
+                return PartialView("_Cart",new List<CartItem>());
+            }
+            var cartItems = cart.CartItems.Select(ci => new CartItem
+            {
+                Id = ci.Id,
+                ProductId = ci.ProductId,
+                Quantity = ci.Quantity,
+                Product = ci.Product,
+
+            }).ToList();
+
+            return PartialView("_Cart",cartItems); ;
+
         }
         [Authorize]
         
